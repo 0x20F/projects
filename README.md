@@ -1,2 +1,2 @@
-# kings-landing
-Customizable landing page for your browser.
+# Projects
+Pretty project display page
