@@ -1,4 +1,9 @@
 export const data = {
+    io: {
+        url: 'https://github.com/0x20f/io',
+        img: 'https://imgur.com/6HCiiig.jpg'
+    },
+
     pepe: {
         url: 'https://github.com/0x20f/pepe',
         img: 'https://imgur.com/F2HgdYV.jpg'
