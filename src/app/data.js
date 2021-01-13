@@ -1,7 +1,12 @@
 export const data = {
+    pepe: {
+        url: 'https://github.com/0x20f/pepe',
+        img: 'https://imgur.com/F2HgdYV.jpg'
+    },
+
     paris: {
-        url: '',
-        img: 'https://imgur.com/fnOJGsG.jpg'
+        url: 'https://github.com/0x20f/paris',
+        img: 'https://imgur.com/ylNGH6k.jpg'
     },
 
     xtype: {
