@@ -36,7 +36,22 @@ html, body {
     max-width: 1500px;
     flex-wrap: wrap;
 
+    header {
+        font-family: DIN;
+        font-size: 470px;
+        z-index: 1;
+        color: transparent;
+        opacity: 0.15;
+        text-transform: uppercase;
+        position: absolute;
+        top: -100px;
+        left: -150px;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: #364461;
+    }
+
     .project {
+        z-index: 30;
         position: relative;
         background-color: red;
         margin: 50px;

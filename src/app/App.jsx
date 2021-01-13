@@ -31,6 +31,7 @@ export default class App extends Component {
 
         return (
             <>
+                <header>Projects<br/>0x20f</header>
                 { projects }
             </>
         )
