@@ -11,7 +11,14 @@ export default class App extends Component {
     }
 
     render() {
+        let keys = Object.keys(this.projects);
+        let showcase = this.projects[keys[ keys.length * Math.random() << 0]];
+
         let projects = Object.entries(this.projects).map(([k, v]) => {
+            if (showcase.url === v.url) {
+                console.log('Showcase is:', v);
+            }
+
             return (
                 <div className="project" key={ k }>
                     <div className="image-container">
