@@ -231,6 +231,37 @@ header {
     }
 }
 
+.tips {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    @include flex();
+    font-family: "Open Sans";
+    font-size: 14px;
+    border-radius: var(--radius);
+    background-color: rgba(24, 27, 33, 0.5);
+    color: #fff;
+    padding: 20px 100px;
+    transition: all .3s;
+    overflow: hidden;
+
+    .info {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: 50px;
+        @include flex();
+        background-color: #181b21;
+        font-family: DIN;
+        font-size: 18px;
+    }
+
+    &.hidden {
+        bottom: -200px;
+    }
+}
+
 ::-webkit-scrollbar {
     width: 12px;
 }

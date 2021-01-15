@@ -12,7 +12,8 @@ export default class App extends Component {
 
         this.state = {
             x: 100,
-            y: 100
+            y: 100,
+            infoShown: false
         }
 
         this.prevX = 0;
@@ -28,6 +29,10 @@ export default class App extends Component {
 
         document.addEventListener('mouseup', this.up);
         document.addEventListener('touchend', this.up);
+
+        setTimeout(() => {
+            this.setState({ infoShown: true });
+        }, 10000);
     }
 
     up = e => {
@@ -43,6 +48,10 @@ export default class App extends Component {
             this.prevX = e.x;
             this.prevY = e.y;
             return;
+        }
+
+        if (this.state.infoShown === false) {
+            this.state.infoShown = true;
         }
 
         const { x, y } = this.state;
@@ -90,9 +99,16 @@ export default class App extends Component {
         }
 
         return (
-            <div className="container" style={ style }>
-                { projects }
-            </div>
+            <>
+                <div className="container" style={ style }>
+                    { projects }
+                </div>
+
+                <div className={ this.state.infoShown ? 'tips hidden' : 'tips' }>
+                    <div className="info">i</div>
+                    Click and Drag to move around!
+                </div>
+            </>
         )
     }
 }
