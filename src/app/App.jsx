@@ -20,34 +20,43 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        document.addEventListener('mousedown', e => {
-            this.holding = true;
-        });
+        document.addEventListener('mousedown', this.down);
+        document.addEventListener('touchstart', this.down);
 
-        document.addEventListener('mousemove', e => {
-            if (! this.holding) {
-                this.prevX = e.x;
-                this.prevY = e.y;
-                return;
-            }
+        document.addEventListener('mousemove', this.move);
+        document.addEventListener('touchmove', this.move);
 
-            const { x, y } = this.state;
+        document.addEventListener('mouseup', this.up);
+        document.addEventListener('touchend', this.up);
+    }
 
-            let diffX = e.x - this.prevX;
-            let diffY = e.y - this.prevY;
+    up = e => {
+        this.holding = false;
+    }
 
-            this.setState({
-                x: x + diffX,
-                y: y + diffY
-            });
+    down = e => {
+        this.holding = true;
+    }
 
+    move = e => {
+        if (! this.holding) {
             this.prevX = e.x;
             this.prevY = e.y;
+            return;
+        }
+
+        const { x, y } = this.state;
+
+        let diffX = e.x - this.prevX;
+        let diffY = e.y - this.prevY;
+
+        this.setState({
+            x: x + diffX,
+            y: y + diffY
         });
 
-        document.addEventListener('mouseup', e => {
-            this.holding = false;
-        });
+        this.prevX = e.x;
+        this.prevY = e.y;
     }
 
     render() {
