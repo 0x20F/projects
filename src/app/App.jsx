@@ -13,11 +13,13 @@ export default class App extends Component {
         this.state = {
             x: -200,
             y: -500,
-            infoShown: false
+            infoShown: true
         }
 
         this.prevX = 0;
         this.prevY = 0;
+
+        this.showTimeout;
     }
 
     componentDidMount() {
@@ -30,8 +32,17 @@ export default class App extends Component {
         document.addEventListener('mouseup', this.up);
         document.addEventListener('touchend', this.up);
 
+        if (window.localStorage.tipped) {
+            return;
+        }
+
+        this.showTimeout = setTimeout(() => {
+            this.setState({ infoShown: false });
+        }, 2000);
+
         setTimeout(() => {
             this.setState({ infoShown: true });
+            window.localStorage.tipped = true;
         }, 10000);
     }
 
@@ -52,6 +63,10 @@ export default class App extends Component {
 
         if (this.state.infoShown === false) {
             this.state.infoShown = true;
+        }
+
+        if (this.showTimeout) {
+            clearTimeout(this.showTimeout);
         }
 
         const { x, y } = this.state;
