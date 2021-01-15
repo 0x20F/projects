@@ -20,6 +20,8 @@ export default class App extends Component {
         this.prevY = 0;
 
         this.showTimeout;
+        this.containerRef = React.createRef();
+        this.projectRef = React.createRef();
     }
 
     componentDidMount() {
@@ -31,6 +33,17 @@ export default class App extends Component {
 
         document.addEventListener('mouseup', this.up);
         document.addEventListener('touchend', this.up);
+
+        let container = this.containerRef.current;
+        let project = this.projectRef.current;
+
+        const { offsetHeight } = container;
+
+
+        this.setState({
+            x: (window.innerWidth / 2) - (project.offsetWidth / 2),
+            y: -(offsetHeight - (window.innerHeight / 2)) + (project.offsetHeight / 2)
+        });
 
         if (window.localStorage.tipped) {
             return;
@@ -84,7 +97,7 @@ export default class App extends Component {
     }
 
     render() {
-        let projects = Object.entries(this.projects).map(([k, v]) => {
+        let projects = Object.entries(this.projects).map(([k, v], i) => {
             let classes = ['project'];
 
             if (v.showcase) {
@@ -92,7 +105,7 @@ export default class App extends Component {
             }
 
             return (
-                <div className={ classes.join(' ') } key={ k }>
+                <div ref={ i === 1 ? this.projectRef : null } className={ classes.join(' ') } key={ k }>
                     <div className="image-container">
                         <img src={ v.img } alt="project image"/>
                     </div>
@@ -115,7 +128,7 @@ export default class App extends Component {
 
         return (
             <>
-                <div className="container" style={ style }>
+                <div ref={ this.containerRef } className="container" style={ style }>
                     { projects }
                 </div>
 

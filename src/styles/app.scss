@@ -111,10 +111,9 @@ header {
         //@include flex($align: flex-start);
         display: grid;
         grid-template-columns: repeat(6, var(--width));
-        grid-template-rows: repeat(8, var(--height));
+        grid-template-rows: repeat(4, var(--height));
         gap: var(--gap);
         box-sizing: border-box;
-        padding: 0 0 300px 0;
 
         max-width: 1500px;
         z-index: 30;
