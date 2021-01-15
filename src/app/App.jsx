@@ -11,8 +11,8 @@ export default class App extends Component {
         this.holding = false;
 
         this.state = {
-            x: 100,
-            y: 100,
+            x: -200,
+            y: -500,
             infoShown: false
         }
 
@@ -106,7 +106,7 @@ export default class App extends Component {
 
                 <div className={ this.state.infoShown ? 'tips hidden' : 'tips' }>
                     <div className="info">i</div>
-                    Click and Drag to move around!
+                    Click and Drag to move through projects!
                 </div>
             </>
         )
