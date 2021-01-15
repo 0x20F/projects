@@ -1,7 +1,7 @@
 export const data = {
     io: {
         url: 'https://github.com/0x20f/io',
-        img: 'https://imgur.com/6HCiiig.jpg'
+        img: 'https://cdna.artstation.com/p/assets/images/images/007/219/320/large/florian-d-k-s-allblack1sta2.jpg'
     },
 
     pepe: {
