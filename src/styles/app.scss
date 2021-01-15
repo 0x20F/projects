@@ -193,6 +193,7 @@ header {
         }
 
         .image-shadow {
+            margin-top: 10px;
             opacity: 0;
             z-index: 1;
             filter: blur(16px);
@@ -235,16 +236,16 @@ header {
 .tips {
     position: absolute;
     bottom: 30px;
-    left: 0;
-    //transform: translate(0, -50%);
+    left: 30px;
     @include flex();
     font-family: "Open Sans";
     font-size: 14px;
-    //border-radius: 0 var(--radius) var(--radius) 0;
-    background-color: rgba(0, 0, 0, 0.99);
+    border-radius: calc(var(--radius) / 2);
+    background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     padding: 50px 100px;
     transition: all .3s;
+    transition-timing-function: ease-in-out;
     overflow: hidden;
     z-index: 71;
 
