@@ -53,13 +53,36 @@ export default class App extends Component {
     }
 
     down = e => {
+        let x, y;
+        
+        if (e.type === 'touchstart') {
+            let touch = e.touches[0];
+            x = touch.pageX;
+            y = touch.pageY;
+        } else if (e.type === 'mousedown') {
+            x = e.pageX;
+            y = e.pageY;
+        }
+
+        this.prevX = x;
+        this.prevY = y;
+        
         this.holding = true;
     }
 
     move = e => {
+        let x, y;
+
+        if (e.type === 'touchmove') {
+            let touch = e.touches[0];
+            x = touch.pageX;
+            y = touch.pageY;
+        } else if (e.type === 'mousemove') {
+            x = e.pageX;
+            y = e.pageY;
+        }
+
         if (! this.holding) {
-            this.prevX = e.x;
-            this.prevY = e.y;
             return;
         }
 
@@ -76,18 +99,16 @@ export default class App extends Component {
             }, 100);
         }
 
-        const { x, y } = this.state;
-
-        let diffX = e.x - this.prevX;
-        let diffY = e.y - this.prevY;
+        let diffX = x - this.prevX;
+        let diffY = y - this.prevY;
 
         this.setState({
-            x: x + diffX,
-            y: y + diffY
+            x: this.state.x + diffX,
+            y: this.state.y + diffY
         });
 
-        this.prevX = e.x;
-        this.prevY = e.y;
+        this.prevX = x;
+        this.prevY = y;
     }
 
 
