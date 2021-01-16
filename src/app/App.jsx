@@ -197,7 +197,7 @@ export default class App extends Component {
 
                     <div className="project-details-buttons">
                         <a className="project-url" href={ detailed.url }>Source</a>
-                        <a className="image-url" href={ detailed.img_author }>Image <br/> Source</a>
+                        { detailed.img_author && <a className="image-url" href={ detailed.img_author }>Image <br/> Source</a> }
                     </div>
                 </div>
             </>

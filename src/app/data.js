@@ -5,7 +5,8 @@ export const data = {
         showcase: true,
         description: `Giving everyone the ability to build and code cool things by making it easy.
         IO is a visual programming tool that allows you to create, edit, and manipulate text
-        and configuration files through a node graph.`
+        and configuration files through a node graph.`,
+        img_author: 'https://www.artstation.com/artwork/4g4b2'
     },
 
     pepe: {

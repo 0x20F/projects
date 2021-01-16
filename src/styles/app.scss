@@ -281,7 +281,7 @@ header {
     & > div {
         position: relative;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgba(0, 0, 0, 0.97);
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
         @include flex($direction: column);
         border-radius: var(--radius);
@@ -343,7 +343,7 @@ header {
 
     .project-details-buttons {
         height: 10%;
-        max-height: 100px;
+        max-height: 80px;
 
         background-color: transparent;
         box-shadow: none;
@@ -352,7 +352,7 @@ header {
 
         a {
             text-align: center;
-            width: 50%;
+            width: 100%;
             height: 100%;
             border-radius: var(--radius);
             background-color: rgb(16, 19, 23);
@@ -368,7 +368,6 @@ header {
             transition: all .3s;
 
             &.project-url {
-                margin-right: 20px;
                 @include background($text: "urltothesourcecodecouldbegithuborgitlab");
 
                 &:hover {
@@ -378,6 +377,7 @@ header {
             }
 
             &.image-url {
+                margin-left: 20px;
                 @include background($text: "urltotheamazingauthorthatiborrowedtherepoimagefrom");
 
                 &:hover {
