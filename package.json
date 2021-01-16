@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/0x20F/kings-landing#readme",
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "identicon.js": "^2.3.3",
     "react": "^16.13.1",
     "react-anime": "^3.0.3",
