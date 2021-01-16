@@ -13,7 +13,12 @@ export default class App extends Component {
         this.state = {
             x: -200,
             y: -500,
-            infoShown: true
+            infoShown: true,
+
+            // Whether to show the sidebar
+            descriptionVisible: false,
+            // What's in the sidebar
+            describedProject: {}
         }
 
         this.prevX = 0;
@@ -74,8 +79,24 @@ export default class App extends Component {
             return;
         }
 
-        if (this.state.infoShown === false) {
-            this.state.infoShown = true;
+        // If the camera moves, the user understood
+        if (!this.state.infoShown) {
+            this.setState({
+                infoShown: true
+            });
+        }
+
+        // If the camera moves, hide the description
+        if (this.state.descriptionVisible) {
+            this.setState({
+                descriptionVisible: false
+            });
+
+            setTimeout(() => {
+                this.setState({
+                    describedProject: {}
+                });
+            }, 100);
         }
 
         if (this.showTimeout) {
@@ -96,6 +117,27 @@ export default class App extends Component {
         this.prevY = e.y;
     }
 
+
+    showDescription = (title, project) => {
+        project.title = title;
+
+        if (project.title === this.state.describedProject.title) {
+            return;
+        } 
+
+        this.setState({
+            descriptionVisible: false
+        }, () => {
+            setTimeout(() => {
+                this.setState({
+                    descriptionVisible: true,
+                    describedProject: project
+                });
+            }, 100);
+        });
+    }
+
+
     render() {
         let projects = Object.entries(this.projects).map(([k, v], i) => {
             let classes = ['project'];
@@ -105,12 +147,15 @@ export default class App extends Component {
             }
 
             return (
-                <div ref={ i === 1 ? this.projectRef : null } className={ classes.join(' ') } key={ k }>
+                <div 
+                    ref={ i === 1 ? this.projectRef : null } 
+                    className={ classes.join(' ') } 
+                    key={ k }
+                    onClick={ () => this.showDescription(k, v) }
+                    >
                     <div className="image-container">
                         <img src={ v.img } alt="project image"/>
                     </div>
-                    
-                    <a className="project-url" href={ v.url }></a>
 
                     <div className="image-shadow image-container">
                         <img src={ v.img } alt="project image"/>
@@ -126,6 +171,8 @@ export default class App extends Component {
             left: `${this.state.x}px`
         }
 
+        let detailed = this.state.describedProject;
+
         return (
             <>
                 <div ref={ this.containerRef } className="container" style={ style }>
@@ -135,6 +182,23 @@ export default class App extends Component {
                 <div className={ this.state.infoShown ? 'tips hidden' : 'tips' }>
                     <div className="info">i</div>
                     Click and Drag to move through projects!
+                </div>
+
+                <div className={ this.state.descriptionVisible ? 'project-details' : 'project-details hidden' }>
+                    <div className="project-details-image">
+                        <img src={ detailed.img } alt="project image"/>
+                        { /*<span className="image-author">image by Koyorin</span> */ }
+                    </div>
+
+                    <div className="project-details-text">
+                        <div className="title">{ detailed.title }</div>
+                        <div className="description">{ detailed.description || 'No description yet.' }</div>
+                    </div>
+
+                    <div className="project-details-buttons">
+                        <a className="project-url" href={ detailed.url }>Source</a>
+                        <a className="image-url" href={ detailed.img_author }>Image <br/> Source</a>
+                    </div>
                 </div>
             </>
         )
