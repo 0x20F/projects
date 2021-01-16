@@ -146,6 +146,39 @@ header {
         z-index: 30;
     }
 
+    .summary {
+        z-index: 50;
+        position: absolute;
+        left: -370px;
+        bottom: 0;
+        width: 300px;
+        height: 300px;
+        background-color: #7289da;
+        opacity: 0.1;
+    }
+
+    .instructions {
+        z-index: 50;
+        position: absolute;
+        left: 0;
+        bottom: -70px;
+        font-family: 'Open Sans';
+        color: #fff;
+        opacity: 0.1;
+        letter-spacing: 0.1em;
+        text-transform: lowercase;
+        font-size: 14px;
+        @include flex($justify: flex-start);
+
+        svg {
+            margin-top: 13px;
+            
+            path {
+                fill: #fff;
+            }
+        }
+    }
+
     .project {
         cursor: pointer;
         z-index: 30;
@@ -386,39 +419,6 @@ header {
                 }
             }
         }
-    }
-}
-
-.tips {
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    @include flex();
-    font-family: "Open Sans";
-    font-size: 14px;
-    border-radius: calc(var(--radius) / 2);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 50px 100px;
-    transition: all .3s;
-    transition-timing-function: ease-in-out;
-    overflow: hidden;
-    z-index: 71;
-
-    .info {
-        position: absolute;
-        left: 0;
-        height: 100%;
-        width: 50px;
-        @include flex();
-        background-color: rgb(22, 112, 230);
-        font-family: DIN;
-        font-size: 18px;
-        color: #181b21;
-    }
-
-    &.hidden {
-        left: -500px;
     }
 }
 

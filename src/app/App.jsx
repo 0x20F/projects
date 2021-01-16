@@ -13,7 +13,6 @@ export default class App extends Component {
         this.state = {
             x: -200,
             y: -500,
-            infoShown: true,
 
             // Whether to show the sidebar
             descriptionVisible: false,
@@ -24,7 +23,6 @@ export default class App extends Component {
         this.prevX = 0;
         this.prevY = 0;
 
-        this.showTimeout;
         this.containerRef = React.createRef();
         this.projectRef = React.createRef();
     }
@@ -44,24 +42,10 @@ export default class App extends Component {
 
         const { offsetHeight } = container;
 
-
         this.setState({
             x: (window.innerWidth / 2) - (project.offsetWidth / 2),
             y: -(offsetHeight - (window.innerHeight / 2)) + (project.offsetHeight / 2)
         });
-
-        if (window.localStorage.tipped) {
-            return;
-        }
-
-        this.showTimeout = setTimeout(() => {
-            this.setState({ infoShown: false });
-        }, 2000);
-
-        setTimeout(() => {
-            this.setState({ infoShown: true });
-            window.localStorage.tipped = true;
-        }, 10000);
     }
 
     up = e => {
@@ -79,13 +63,6 @@ export default class App extends Component {
             return;
         }
 
-        // If the camera moves, the user understood
-        if (!this.state.infoShown) {
-            this.setState({
-                infoShown: true
-            });
-        }
-
         // If the camera moves, hide the description
         if (this.state.descriptionVisible) {
             this.setState({
@@ -97,10 +74,6 @@ export default class App extends Component {
                     describedProject: {}
                 });
             }, 100);
-        }
-
-        if (this.showTimeout) {
-            clearTimeout(this.showTimeout);
         }
 
         const { x, y } = this.state;
@@ -177,11 +150,10 @@ export default class App extends Component {
             <>
                 <div ref={ this.containerRef } className="container" style={ style }>
                     { projects }
-                </div>
-
-                <div className={ this.state.infoShown ? 'tips hidden' : 'tips' }>
-                    <div className="info">i</div>
-                    Click and Drag to move through projects!
+                    <div className="instructions">
+                        <svg version="1.1" width="34" height="34" viewBox="0 0 34 34"><path d="M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z" /></svg>
+                        Click and drag to look around!
+                    </div>
                 </div>
 
                 <div className={ this.state.descriptionVisible ? 'project-details' : 'project-details hidden' }>
