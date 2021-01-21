@@ -179,6 +179,14 @@ header {
         }
     }
 
+    .stats {
+        width: 400px;
+        height: auto;
+        position: absolute;
+        left: -470px;
+        bottom: 0;
+    }
+
     .project {
         cursor: pointer;
         z-index: 30;
