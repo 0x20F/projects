@@ -181,10 +181,14 @@ header {
 
     .stats {
         width: 400px;
-        height: auto;
+        height: 400px;
         position: absolute;
         left: -470px;
         bottom: 0;
+
+        .apexcharts-bar-series.apexcharts-plot-series  .apexcharts-series path {
+            clip-path: inset(1px 1px 1px 1px round 8px);
+        }
     }
 
     .project {
