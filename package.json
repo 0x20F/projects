@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/0x20F/kings-landing#readme",
   "dependencies": {
+    "apexcharts": "^3.23.1",
     "axios": "^0.21.1",
     "identicon.js": "^2.3.3",
     "react": "^16.13.1",

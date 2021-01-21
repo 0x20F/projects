@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { data } from './data';
+import ApexCharts from 'apexcharts';
 
 
 
@@ -25,6 +26,7 @@ export default class App extends Component {
 
         this.containerRef = React.createRef();
         this.projectRef = React.createRef();
+        this.graphRef = React.createRef();
     }
 
     componentDidMount() {
@@ -46,11 +48,31 @@ export default class App extends Component {
             x: (window.innerWidth / 2) - (project.offsetWidth / 2),
             y: -(offsetHeight - (window.innerHeight / 2)) + (project.offsetHeight / 2)
         });
+
+        // Render graph
+        let options = {
+            chart: {
+                type: 'line'
+            },
+            series: [{
+                name: 'sales',
+                data: [30,40,35,50,49,60,70,91,125]
+            }],
+            xaxis: {
+                categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+            }
+        }
+        
+        let chart = new ApexCharts(this.graphRef.current, options);
+        
+        chart.render();
     }
+
 
     up = e => {
         this.holding = false;
     }
+
 
     down = e => {
         let x, y;
@@ -69,6 +91,7 @@ export default class App extends Component {
         
         this.holding = true;
     }
+
 
     move = e => {
         let x, y;
@@ -175,6 +198,8 @@ export default class App extends Component {
                         <svg version="1.1" width="34" height="34" viewBox="0 0 34 34"><path d="M11,15H13V17H11V15M11,7H13V13H11V7M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20Z" /></svg>
                         Click and drag to look around!
                     </div>
+
+                    <div ref={ this.graphRef } className="stats"></div>
                 </div>
 
                 <div className={ this.state.descriptionVisible ? 'project-details' : 'project-details hidden' }>
