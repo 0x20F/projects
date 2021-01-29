@@ -47,6 +47,14 @@
         --radius: .9vh;
     }
 
+    @media screen and (min-width: 1920px) {
+        --width: 400px;
+        --height: 400px;
+        --gap: 350px;
+        --border: 3px;
+        --radius: 21px;
+    }
+
     
     --after-width-showcase: calc((var(--width) - (var(--border) / 1.5)) * 2 + var(--gap));
     --after-height-showcase: calc((var(--height) - (var(--border) / 1.5)) * 2 + var(--gap));
